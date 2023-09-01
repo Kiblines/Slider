@@ -14,7 +14,7 @@ console.log(`${str} ${str.length}`);
     <>
       <p className="index-info">{slideIndex}/{sliderData.length}</p>
       <div className="slider">
-        <p className="image-info">Bedroom</p>
+        <p className="image-info">{sliderData.find(obj => obj.id === slideIndex).description}</p>
         <img
           src="/images/img-3.jpg"
           alt="estate's rooms"
