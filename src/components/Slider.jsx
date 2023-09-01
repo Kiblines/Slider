@@ -2,7 +2,7 @@ import React from "react";
 import leftChevron from "../assets/left-arrow.svg";
 import rightChevron from "../assets/right-arrow.svg";
 import "./Slider.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import sliderData from "../data/sliderData";
 
 export default function Slider() {
@@ -10,16 +10,29 @@ export default function Slider() {
   const str = "Life, the universe and everything. Answer:";
 
   function toggleImage(indexPayLoad) {
-    let newState;
-    if (indexPayLoad + sliderIndex > sliderData.length) {
-      newState = 1;
-    } else if (indexPayLoad + sliderIndex < 1) {
-      newState = sliderData.length;
-    } else {
-      newState = indexPayLoad + sliderIndex;
-    }
-    setSliderIndex(newState);
+    // let newState;
+    // if (indexPayLoad + sliderIndex > sliderData.length) {
+    //   newState = 1;
+    // } else if (indexPayLoad + sliderIndex < 1) {
+    //   newState = sliderData.length;
+    // } else {
+    //   newState = indexPayLoad + sliderIndex;
+    // }
+    // setSliderIndex(newState);
+    setSliderIndex((state) => {
+      if (indexPayLoad + state > sliderData.length) {
+        return 1;
+      } else if (indexPayLoad + state < 1) {
+        return sliderData.length;
+      } else {
+        return state + indexPayLoad;
+      }
+    });
   }
+  useEffect(() => {
+    const intervalId = setInterval(() => toggleImage(1), 2000);
+    return () => clearInterval(intervalId);
+  }, []);
 
   console.log(`${str} ${str.length}`);
   return (
