@@ -6,17 +6,17 @@ import { useState } from "react";
 import sliderData from "../data/sliderData";
 
 export default function Slider() {
-  const [slideIndex, setSlideIndex] = useState(1);
+  const [sliderIndex, setSliderIndex] = useState(1);
   const str = 'Life, the universe and everything. Answer:';
 
 console.log(`${str} ${str.length}`);
   return (
     <>
-      <p className="index-info">{slideIndex}/{sliderData.length}</p>
+      <p className="index-info">{sliderIndex}/{sliderData.length}</p>
       <div className="slider">
-        <p className="image-info">{sliderData.find(obj => obj.id === slideIndex).description}</p>
+        <p className="image-info">{sliderData.find(obj => obj.id === sliderIndex).description}</p>
         <img
-          src="/images/img-3.jpg"
+          src={`/images/img-${sliderIndex}.jpg`}
           alt="estate's rooms"
           className="slider-img"
         />
